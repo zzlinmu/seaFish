@@ -1,0 +1,92 @@
+---默认参数（所有接口都要加上）：userid(用户id：没有就是0),key(用户key):,versionCode(版本号):1.0.1，imei（设备号），client（来源客户端）：ios,apk,h5
+----zz 请求地址  http://192.168.0.131:8088
+--根据分类获取所有海鲜产品
+http://localhost:8088/fishproduct/allFish
+    参数：cateId(分类id,不传获取所有分类下海鲜):
+
+ {
+   "status": 0,
+    "msg": "",//失败原因
+    "success": true,//成功，false:失败
+    "sourceUrl": null,
+    "totalpage": 0
+    "dataWrapper": {
+     "datas": [
+         {
+         "id": 500,
+         "catename": "鱼类",
+         "status": "1",
+         "createtime": 1522121744000,
+         "sortiid": 0,
+          "list": [
+                   {
+                     "id": 11,
+                     "proarrid": null,
+                     "name": "青占鱼",
+                     "picture": "http://haishangxian.cn/Uploads/Category/2016-03-14/56e66938e3297.jpg",
+                     "cateid": 500, //分类id
+                     "templeateid": ",250,251,252,253,254,22,271,280,70,0,1,2000,20001,20002",
+                     "sortid": -127,//排序值
+                     "fishdesc": null,
+                     "createtime": 1522136843000,
+                     "status": "1",
+                     "clicknum": 0
+                   },
+                   ]
+           }
+           ]
+         }
+  }
+--获取地址
+http://localhost:8088/getAddress
+
+
+--获取规格：
+http://localhost:8088/fishParams
+参数：id(海鲜产品id),
+{
+ "msg": "",//失败打印msg
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+  "status": 0,
+  "dataWrapper": {
+    "specNameList": [//主要规格
+      {
+        "id": 260,
+        "attrname": "specName",
+        "attrvale": "一般规格",
+        "createtime": 1522136844000,
+        "status": "1",
+        "attrunit": null
+      }
+    ],
+    "mainTypeList": [//主要类型
+      {
+        "id": 0,
+        "attrname": "storageName",
+        "attrvale": "冰鲜",
+        "createtime": 1522136849000,
+        "status": "1",
+        "attrunit": null
+      },
+      {
+        "id": 3,
+        "attrname": "storageName",
+        "attrvale": "已加工",
+        "createtime": 1522136849000,
+        "status": "1",
+        "attrunit": null
+      }
+    ],
+    "specUnitList": [ //单位
+      {
+        "id": 2000,
+        "attrname": "specUnit",
+        "attrvale": "元/箱",
+        "createtime": 1522219276000,
+        "status": "1",
+        "attrunit": null
+      }
+    ]
+  },
