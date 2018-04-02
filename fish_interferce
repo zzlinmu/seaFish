@@ -22,6 +22,37 @@
       响应
 
 
+--获取所有分类
+ http://localhost:8088/fishproduct/allCate
+{
+  "status": 0,
+    "msg": "",
+    "success": true,
+    "sourceUrl": null,
+    "totalpage": 0
+  "dataWrapper": {
+    "datas": [
+      {
+        "id": 500,
+        "catename": "鱼类",
+        "status": "1",
+        "createtime": 1522381304000,
+        "sortiid": 0,
+        "list": null
+      },
+      {
+        "id": 501,
+        "catename": "头足类",
+        "status": "1",
+        "createtime": 1522381305000,
+        "sortiid": 0,
+        "list": null
+      },
+     
+    ]
+  },
+
+}
  --根据分类获取所有海鲜产品
  http://localhost:8088/fishproduct/allFish
      参数：cateId(分类id,不传获取所有分类下海鲜):
