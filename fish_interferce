@@ -211,3 +211,30 @@ http://localhost:8088/searchFish
             ]
     },
    }
+
+--供求列表
+http://localhost:8088/sellOrBuy
+参数：tradetype(购买出售)：buy,sell;
+ 选填：cateid(分类id)500, productname(商品名称); addressid(地址id),
+ storageid（存方式传id）海鲜， unit(单位) lowprice（最低价格） heighprice（最高价格） page（页数） pid（商品id)
+ {
+   "status": 0,
+   "dataWrapper": {
+     "totalPage": 1,
+     "orderlist": [
+       {
+         "id": 13,
+         "title": "sell状元鱼2000斤",
+         "endTime": "2018-04-21",
+         "price": "20",
+         "spcName": "统货",
+         "unit": null,
+         "address": "上海"
+       }
+     ]
+   },
+   "msg": "success",
+   "success": true,
+   "sourceUrl": null,
+   "totalpage": 0
+ }
