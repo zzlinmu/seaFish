@@ -187,27 +187,29 @@ http://localhost:8088/sellOrBuy(zz)
  选填：cateid(分类id)500, productname(商品名称)， addressid（地址id）,orderType（1：//价格从高到低，0：从低到高）默认0，
     productname（搜索字），addressid（地址id）,storageid（存储方式，接口fishStorrage中获取id),
        lowprice(最低价格)，heighprice(最高价格)，pid（商品id）
- {
-   "status": 0,
-   "dataWrapper": {
-     "totalPage": 1,
-     "orderlist": [
-       {
-         "id": 13,
-         "title": "sell状元鱼2000斤",
-         "endTime": "2018-04-21",
-         "price": "20",
-         "spcName": "统货",
-         "unit": null,
-         "address": "上海"
-       }
-     ]
-   },
-   "msg": "success",
-   "success": true,
-   "sourceUrl": null,
-   "totalpage": 0
- }
+{
+  "status": 0,
+  "dataWrapper": {
+    "datas": [
+      {
+        "id": 13,
+        "title": "sell状元鱼2000斤",
+        "endTime": "2018-04-21",
+        "price": "20",
+        "spcName": "一般规格",
+        "unit": null,
+        "address": "泉州市",
+        "name": null,
+        "picture": "http://haishangxian.cn/Uploads/Category/2016-09-08/57d15f8208004.jpg"
+      }
+    ],
+    "totalPage": 1
+  },
+  "msg": "success",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
 
  ---获取存储方式列表
  http://localhost:8088/fishStorrage
@@ -351,4 +353,18 @@ http://localhost:8081/news
         ]
   },
 
+}
+
+--上传图片
+http://localhost:8081/uploadImg
+参数：file（图片）内容，upLoadMethod(addTradeMsg)
+{
+  "status": 0,
+  "dataWrapper": {
+    "picPath": "/opt/static/images//2018/04//f6f28465f22949e192cd2c3edac20e7b1522823627837..jpg"
+  },
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
 }
