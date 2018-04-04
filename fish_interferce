@@ -179,7 +179,7 @@
     参数:addressid(地址id):12,prductid(商品id):506 ,specid(规格id):260 ,unit(单位id):2000,storageid(存储方式id):3
     Price(价格):20 ,Tradenum(交易数量):2000,Tradetype(交易方式)：sell出售，buy 购买
     userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01,
-    选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，备注图片，file（文件必须未图片格式）
+    选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，备注图片，file（文件必须未图片格式,暂时不用）,notepic（上传图片路径）
 
 --供求列表
 http://localhost:8088/sellOrBuy(zz)
@@ -290,7 +290,7 @@ http://localhost:8088/tradeMsgDetail
 
     }
 --新闻列表
-http://localhost:8081/news
+http://localhost:8088/news
 {
   "status": 0,
    "msg": "",
@@ -356,7 +356,7 @@ http://localhost:8081/news
 }
 
 --上传图片
-http://localhost:8081/uploadImg
+http://localhost:8088/uploadImg
 参数：file（图片）内容，upLoadMethod(addTradeMsg)
 {
   "status": 0,
