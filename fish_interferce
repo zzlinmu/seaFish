@@ -1,4 +1,4 @@
-\---默认参数（所有接口都要加上）：userid(用户id：没有就是0),key(用户key):,versionCode(版本号):1.0.1，imei（设备号），client（来源客户端）：ios,apk,h5
+---默认参数（所有接口都要加上）：userid(用户id：没有就是0),key(用户key):,versionCode(版本号):1.0.1，imei（设备号），client（来源客户端）：ios,apk,h5
  ----zz 请求地址  http://192.168.0.131:8088
 
 
@@ -20,7 +20,6 @@
       请求参数：mobile(手机�?);checkcode(短信验证�?);password(新密�?);checkpassword(重复新密�?);
       判断是否调�?�接口：status:0;    msg�?"success";
       响应
-
 
 --获取所有分类
  http://localhost:8088/fishproduct/allCate
@@ -48,11 +47,12 @@
         "sortiid": 0,
         "list": null
       },
-     
+
     ]
   },
 
 }
+
  --根据分类获取所有海鲜产品
  http://localhost:8088/fishproduct/allFish
      参数：cateId(分类id,不传获取所有分类下海鲜):
@@ -92,8 +92,6 @@
    }
 
 
-
- --获取规格：
  http://localhost:8088/fishParams
  参数：id(海鲜产品id),
  {
@@ -175,6 +173,7 @@
        },
     }
 
+
  ---添加交易信息
  http://localhost:8088/addTradeMsg
     参数:addressid(地址id):12,prductid(商品id):506 ,specid(规格id):260 ,unit(单位id):2000,storageid(存储方式id):3
@@ -182,41 +181,12 @@
     userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01,
     选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，备注图片，file（文件必须未图片格式）
 
---搜索鱼类信息
-http://localhost:8088/searchFish
-参数：kw(搜素字段)：鱿鱼
-  {
-    "msg": "",//失败打印msg
-      "success": true,
-      "sourceUrl": null,
-      "totalpage": 0
-      "status": 0,
-      "dataWrapper": {
-            "list": [
-                    {
-                      "id": 11,
-                      "proarrid": null,
-                      "name": "青占鱼",
-                      "picture": "http://haishangxian.cn/Uploads/Category/2016-03-14/56e66938e3297.jpg",
-                      "cateid": 500, //分类id
-                      "templeateid": ",250,251,252,253,254,22,271,280,70,0,1,2000,20001,20002",
-                      "sortid": -127,//排序值
-                      "fishdesc": null,
-                      "createtime": 1522136843000,
-                      "status": "1",
-                      "clicknum": 0
-                    },
-                    ]
-            }
-            ]
-    },
-   }
-
 --供求列表
-http://localhost:8088/sellOrBuy
-参数：tradetype(购买出售)：buy,sell;
- 选填：cateid(分类id)500, productname(商品名称); addressid(地址id),
- storageid（存方式传id）海鲜， unit(单位) lowprice（最低价格） heighprice（最高价格） page（页数） pid（商品id)
+http://localhost:8088/sellOrBuy(zz)
+参数：tradetype(buy购买 sell出售),page(页数，默认1)
+ 选填：cateid(分类id)500, productname(商品名称)， addressid（地址id）,orderType（1：//价格从高到低，0：从低到高）默认0，
+    productname（搜索字），addressid（地址id）,storageid（存储方式，接口fishStorrage中获取id),
+       lowprice(最低价格)，heighprice(最高价格)，pid（商品id）
  {
    "status": 0,
    "dataWrapper": {
@@ -238,3 +208,147 @@ http://localhost:8088/sellOrBuy
    "sourceUrl": null,
    "totalpage": 0
  }
+
+ ---获取存储方式列表
+ http://localhost:8088/fishStorrage
+{
+  "status": 0,
+    "msg": "",
+    "success": true,
+    "sourceUrl": null,
+    "totalpage": 0
+  "dataWrapper": {
+    "datas": [
+      {
+        "id": 0,
+        "attrname": "storageName",
+        "attrvale": "冰鲜",
+        "createtime": 1522381308000,
+        "status": "1",
+        "attrunit": null
+      },
+      {
+        "id": 1,
+        "attrname": "storageName",
+        "attrvale": "冻品",
+        "createtime": 1522381308000,
+        "status": "1",
+        "attrunit": null
+      },
+      {
+        "id": 2,
+        "attrname": "storageName",
+        "attrvale": "远洋",
+        "createtime": 1522381308000,
+        "status": "1",
+        "attrunit": null
+      },
+      {
+        "id": 3,
+        "attrname": "storageName",
+        "attrvale": "已加工",
+        "createtime": 1522381308000,
+        "status": "1",
+        "attrunit": null
+      },
+      {
+        "id": 4,
+        "attrname": "storageName",
+        "attrvale": "养殖",
+        "createtime": 1522381308000,
+        "status": "1",
+        "attrunit": null
+      }
+    ]
+  },
+
+}
+
+--供应/出售详情
+http://localhost:8088/tradeMsgDetail
+    参数：id(供应出售信息id)
+    {
+      "status": 0,
+      "msg": "success",
+      "success": true,
+      "sourceUrl": null,
+       "totalpage": 0
+      "dataWrapper": {
+        "datas": {
+          "id": 13,
+          "title": "sell状元鱼2000斤",
+          "endTime": "2018-04-21",
+          "price": null,
+          "spcName": "一般规格",
+          "unit": "2000斤",
+          "address": "泉州市",
+          "name": "状元鱼"
+        }
+      },
+
+    }
+--新闻列表
+http://localhost:8081/news
+{
+  "status": 0,
+   "msg": "",
+   "success": true,
+   "sourceUrl": null,
+   "totalpage": 7（总页数）
+  "dataWrapper": {
+    "datas": [
+      {
+        "id": 4534,
+        "title": "海上鲜——全力打造“一站式渔业综合服务平台”！",（标题）
+        "createtime": 1522227000000,（创建时间）
+        "author": null,（作者）
+        "sortid": 0,
+        "status": "1",
+        "newtype": 4,（新闻所在分类id）
+        "showtype": "3",（展示类型，1，表示一图，3：表示显示三张图片，图片链接之间已,,分开）
+        "picture":"http://file1.haishangxian.net:8088/fsm/file/download/5/063507556ef1.jpg,,http://file1.haishangxian.net:8088/fsm/file/download/1/06360565e16d.jpg,,http://file1.haishangxian.net:8088/fsm/file/download/2/06379969132c.jpg",
+        "urllink": "http://file1.haishangxian.net:8088/hsxAdmin/cc/news/getArticleDetail?id=4534",（文章跳转链接）
+        "newcontent": null
+      },
+
+      {
+        "id": 4453,
+        "title": "一首流传在跑船人之间的诗，看得人落下感动的泪水！",
+        "createtime": 1520844600000,
+        "author": null,
+        "sortid": 0,
+        "status": "1",
+        "newtype": 4,
+        "showtype": "1",
+        "picture": "http://file1.haishangxian.net:8088/fsm/file/download/6/04a7232317c9.jpg,,,,",
+        "urllink": "http://file1.haishangxian.net:8088/hsxAdmin/cc/news/getArticleDetail?id=4453",
+        "newcontent": null
+      },
+
+    ]
+    "newstype": [//新闻分类（刚进入页面时候给出）
+          {
+            "id": 4,
+            "name": "海上鲜动态",
+            "createtime": 1522375110000,
+            "status": "1",
+            "sortid": 0
+          },
+          {
+            "id": 1,
+            "name": "政策新闻",
+            "createtime": 1522375110000,
+            "status": "1",
+            "sortid": 0
+          },
+          {
+            "id": 3,
+            "name": "专题",
+            "createtime": 1522375110000,
+            "status": "1",
+            "sortid": 0
+          }
+        ]
+  },
+
+}
