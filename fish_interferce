@@ -452,8 +452,8 @@ http://localhost:8081/myTradeMsg
    "msg": "success",
     "success": true,
     "sourceUrl": null,
-    "totalpage": 0
-  "dataWrapper": {
+    "totalpage": 1
+    "dataWrapper": {
     "datas": [
       {
              "id": 17,
@@ -473,7 +473,16 @@ http://localhost:8081/myTradeMsg
              "noticePic": 备注图片
            },
     ],
-    "totalPage": 1
   },
 
+}
+http://localhost:8081/deleteTradeMsg?
+参数：id（上个接口交易信息id）:17
+{
+  "status": 0,
+  "dataWrapper": {},
+  "msg": "删除成功",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
 }
