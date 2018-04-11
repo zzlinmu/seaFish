@@ -207,6 +207,12 @@ http://localhost:8088/userSign
     选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，notepic(备注图片，多个图片已英文,,分开)
     ----暂时不用 备注图片，file（文件必须未图片格式））
 
+---搜索热词
+http://localhost:8088/searchKey
+ 参数：searchSource(关键词来源，供求列表（tradeKey）,新闻列表（newsKey）)
+ 
+ 
+ 
 --供求列表
 http://localhost:8088/sellOrBuy(zz)
 参数：tradetype(buy购买 sell出售),page(页数，默认1)
