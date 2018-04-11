@@ -345,7 +345,7 @@ http://localhost:8081/news(zz)
       {
         "id": 4534,
         "title": "海上鲜——全力打造“一站式渔业综合服务平台”！",（标题）
-        "createtime": 1522227000000,（创建时间）
+        "CreateTimeStr": 2017-06-02,（创建时间）
         "author": null,（作者）
         "sortid": 0,
         "status": "1",
@@ -411,7 +411,7 @@ page:页数，kw（搜索关键字）
       {
         "id": 4534,
         "title": "海上鲜——全力打造“一站式渔业综合服务平台”！",（标题）
-        "createtime": 1522227000000,（创建时间）
+        "CreateTimeStr": 2017-02-06,（创建时间）
         "author": null,（作者）
         "sortid": 0,
         "status": "1",
