@@ -79,7 +79,7 @@ http://localhost:8088/userSign
 }
 
  --根据分类获取所有海鲜产品
- http://localhost:8088/fishproduct/allFish
+ http://localhost:8088/allFish
      参数：cateId(分类id,不传获取所有分类下海鲜):
 
   {
@@ -207,18 +207,12 @@ http://localhost:8088/userSign
     选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，notepic(备注图片，多个图片已英文,,分开)
     ----暂时不用 备注图片，file（文件必须未图片格式））
 
----搜索热词
-http://localhost:8088/searchKey
- 参数：searchSource(关键词来源，供求列表（tradeKey）,新闻列表（newsKey）)
- 
- 
- 
 --供求列表
 http://localhost:8088/sellOrBuy(zz)
 参数：tradetype(buy购买 sell出售),page(页数，默认1)
- 选填：cateid(分类id)500, productname(商品名称)， addressid（地址id）,orderType（1：//价格从高到低，0：从低到高）默认0，
-    productname（搜索字），addressid（地址id）,storageid（存储方式，接口fishStorrage中获取id),
-       lowprice(最低价格)，heighprice(最高价格)，pid（商品id）
+ 选填：cateid(分类id)500,  addressid（地址id）,orderType（1：//价格从高到低，0：从低到高）默认0，
+    productname（搜索关键字），addressid（地址id）,storageid（存储方式，接口fishStorrage中获取id),
+       lowprice(最低价格)，heighprice(最高价格)，pid（商品id）unit(单位)：1斤，2吨
 {
   "status": 0,
   "dataWrapper": {
@@ -248,6 +242,7 @@ http://localhost:8088/sellOrBuy(zz)
 
  ---获取存储方式列表
  http://localhost:8088/fishStorrage
+参数：unit:1(获取单位列表)
 {
   "status": 0,
     "msg": "",
@@ -255,6 +250,16 @@ http://localhost:8088/sellOrBuy(zz)
     "sourceUrl": null,
     "totalpage": 0
   "dataWrapper": {
+   "unitDatas": [
+        {
+          "id": 2,
+          "name": "元/吨"
+        },
+        {
+          "id": null,
+          "name": null
+        }
+      ],
     "datas": [
       {
         "id": 0,
@@ -351,7 +356,7 @@ http://localhost:8081/news(zz)
       {
         "id": 4534,
         "title": "海上鲜——全力打造“一站式渔业综合服务平台”！",（标题）
-        "CreateTimeStr": 2017-06-02,（创建时间）
+        "createtime": 1522227000000,（创建时间）
         "author": null,（作者）
         "sortid": 0,
         "status": "1",
@@ -417,7 +422,7 @@ page:页数，kw（搜索关键字）
       {
         "id": 4534,
         "title": "海上鲜——全力打造“一站式渔业综合服务平台”！",（标题）
-        "CreateTimeStr": 2017-02-06,（创建时间）
+        "createtime": 1522227000000,（创建时间）
         "author": null,（作者）
         "sortid": 0,
         "status": "1",
@@ -481,14 +486,4 @@ http://localhost:8081/myTradeMsg
     ],
   },
 
-}
-http://localhost:8081/deleteTradeMsg?
-参数：id（上个接口交易信息id）:17
-{
-  "status": 0,
-  "dataWrapper": {},
-  "msg": "删除成功",
-  "success": true,
-  "sourceUrl": null,
-  "totalpage": 0
 }
