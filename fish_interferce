@@ -17,10 +17,12 @@
      响应结果：
 {
   "status": 0,
-  "dataWrapper": {
-    "userid": 14,
-    "key": "cFNDd1AxdFNUeVd4WitDT3AvdUkyZz09"
-  },
+   "dataWrapper": {
+      "imSuccess": null,
+      "imToken": "",
+      "userid": 14,
+      "key": "b0F3NjN2cGpsMUN4WitDT3AvdUkyZz09"
+    },
   "msg": "success",
   "success": true,
   "sourceUrl": null,
@@ -45,6 +47,24 @@ http://localhost:8088/userSign
     "sourceUrl":null,
     "totalpage":0
     }
+--签到列表
+http://localhost:8088/userSignList
+参数：dateStr（时间：2018-08） 不传查询当月
+{
+  "status": 0,
+  "dataWrapper": {
+    "datas": {
+      "2018-5-1": "checked",
+      "2018-5-2": "checked"
+    }
+    "jf":12 //积分
+  },
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
+
 
 --获取所有分类
  http://localhost:8088/fishproduct/allCate
@@ -487,42 +507,17 @@ http://localhost:8081/myTradeMsg
   },
 
 }
-http://localhost:8081/deleteTradeMsg
-参数：id（上个接口交易信息id）:17
+---搜索关键字
+http://localhost:8081/searchKey
+参数：searchSource（供求列表：tradeKey，新闻热搜关键字，newskey）
+--获取手机验证码：
+http://localhost:8081/safeCode
+参数：functionName(register:注册，findPwd：找回密码)
 {
   "status": 0,
   "dataWrapper": {},
-  "msg": "删除成功",
+  "msg": "",
   "success": true,
   "sourceUrl": null,
   "totalpage": 0
-}
----搜索热词
-http://localhost:8088/searchKey
- 参数：searchSource(关键词来源，供求列表（tradeKey）,新闻列表（newsKey）)
- {
-  "msg": "",
-   "success": true,
-   "sourceUrl": null,
-   "totalpage": 0
-    "status": 0,
-     "dataWrapper": {
-      "datas": [
-       {  "id": 51006,
-         "keyword": "undefined",
-         "createtime": null,
-         "userid": null,
-         "status": null,
-         "searchsource": null
-       },
-
-       {
-         "id": 84,
-         "keyword": "null",
-         "createtime": null,
-         "userid": null,
-         "status": null,
-         "searchsource": null
-       },
-       }]
 }
