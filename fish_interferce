@@ -56,6 +56,33 @@ http://localhost:8081/index
   },
 
 }
+
+--优质商家/优质商品
+http://localhost:8088/fishQuality
+参数：indexType（1：优质商品，2：优质商家） page（页数）
+{ 优质商家返回，推荐渔火返回与首页返回渔货数据一样
+  "status": 0,
+  "msg": "",
+   "success": true,
+   "sourceUrl": null,
+   "totalpage": 1
+  "dataWrapper": {
+    "datas": [
+      {
+        "id": 14,
+        "storeName": "dfasdfs", //商家名称
+        "picture": "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=801607616,1700554294&fm=58", //商家图片
+        "mainSale": "鱼类",//主营业务
+        "storeMsg": "[ //认证信息
+                    {\"msgKey\":\"buyerProduct\",\"msgValue\":\"买家保证\"},
+                    {\"msgKey\":\"realAddress\",\"msgValue\":\"实地认证\"},
+                    {\"msgKey\":\"realName\",\"msgValue\":\"实人\"}]",
+        "storeAddress": "上海" //地址
+      }
+    ]
+  },
+
+}
  --注册接口
  http://localhost:8080/regist
      请求参数：mobile(手机号码);checkcode(短信验证码);password(密码 md5加密);checkpassword(重复密码 md5加密);
