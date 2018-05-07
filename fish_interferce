@@ -59,7 +59,7 @@ http://localhost:8081/index
 
 --优质商家/优质商品
 http://localhost:8088/fishQuality
-参数：indexType（1：优质商品，2：优质商家） page（页数）
+参数：indexType（1：推荐渔火，2：优质商家） page（页数）
 { 优质商家返回，推荐渔火返回与首页返回渔货数据一样
   "status": 0,
   "msg": "",
@@ -423,17 +423,62 @@ http://localhost:8088/tradeMsgDetail
       "sourceUrl": null,
        "totalpage": 0
       "dataWrapper": {
-        "datas": {
-          "id": 13,
-          "title": "sell状元鱼2000斤",
-          "endTime": "2018-04-21",
-          "price": null,
-          "spcName": "一般规格",
-          "unit": "2000斤",
-          "address": "泉州市",
-          "name": "状元鱼"
-        }
-      },
+         "likeTradeMsg": { //相关产品
+           "id": 18,
+           "title": "sell毛蛤20000000斤",
+           "endTime": "2018-04-21",
+           "price": null,
+           "spcName": "一般规格",
+           "unit": "2.0E7斤",
+           "address": "广东省舟山码头",
+           "name": "毛蛤",
+           "picture": null,
+           "storageName": null,
+           "storagePic": null,
+           "createTime": null,
+           "status": null,
+           "notice": null,
+           "noticePic": null,
+           "storeMsg": null,
+           "storeName": null
+         },
+         "datas": { //商品详细信息
+           "id": 18,
+           "title": "sell毛蛤20000000斤",
+           "endTime": "2018-04-21", //结束时间
+           "price": 20, //价格
+           "spcName": "一般规格",
+           "unit": "元/斤",//单位
+           "address": "广东省舟山码头",
+           "name": "毛蛤",
+           "notice": null, //商品备注
+           "noticePic": null,//商品详情
+         },
+         "store": { //店铺信息
+           "id": 14,
+           "storeName": "dfasdfs", 店铺名字
+           "picture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg",
+           "mainSale": null,//主营业务
+           "stroeMsg": [ //商家认证信息
+             {
+               "msgKey": "buyerProduct",
+               "msgValue": "买家保证"
+             },
+             {
+               "msgKey": "realAddress",
+               "msgValue": "实地认证"
+             },
+             {
+               "msgKey": "realName",
+               "msgValue": "实人"
+             }
+           ],
+           "storeLabel": 行情官, //商家标签（,,分开）
+           "asknum": 1,//咨询人数
+           "dealnum": null,//销售数量
+           "viewsnum": 1,//浏览数量
+         }
+       },
 
     }
 
@@ -594,7 +639,7 @@ http://localhost:8081/myTradeMsg
   },
 
 }
----搜索关键字
+---获取搜索关键字
 http://localhost:8081/searchKey
 参数：searchSource（供求列表：tradeKey，新闻热搜关键字，newskey）
 --获取手机验证码：
