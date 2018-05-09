@@ -308,10 +308,10 @@ http://localhost:8088/userSignList
 
  ---添加交易信息
  http://localhost:8088/addTradeMsg
-    参数:addressid(地址id):12,prductid(商品id):506 ,specid(规格id):260 ,unit(单位id):2000,storageid(存储方式id):3
+    参数:dockName(码头名称)，cityName：码头所属城市名称,prductid(商品id):506 ,specid(规格id):260 ,unit(单位id):2000,storageid(存储方式id):3
     Price(价格):20 ,Tradenum(交易数量):2000,Tradetype(交易方式)：sell出售，buy 购买
-    userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01,
-    选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，notepic(备注图片，多个图片已英文,,分开)
+    userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01, minTradeNum:最小数量，service;//服务方式 1：自运，2：统一服务notepic(备注图片，多个图片已英文,,分开默认第一张是主图);
+    选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，
     ----暂时不用 备注图片，file（文件必须未图片格式））
 
 --供求列表
@@ -616,7 +616,7 @@ http://localhost:8081/uploadImg
 }
 
 --天气（嵌入h5）
-https://crm.haishangxian.net/WeatherCrawler/map.html
+http://localhost:8088/map.html
 
 
 --我的供求
