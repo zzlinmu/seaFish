@@ -453,9 +453,13 @@ http://localhost:8088/tradeMsgDetail
            "name": "毛蛤",
            "notice": null, //商品备注
            "noticePic": null,//商品详情
+           "minNumStr":最小数量
+           createTime:发布时间
          },
          "store": { //店铺信息
            "id": 14,
+           "mobile":182;//手机号码
+            "imid":'fish1324';第三方即使通讯id
            "storeName": "dfasdfs", 店铺名字
            "picture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg",
            "mainSale": null,//主营业务
@@ -463,14 +467,17 @@ http://localhost:8088/tradeMsgDetail
              {
                "msgKey": "buyerProduct",
                "msgValue": "买家保证"
+               "isgPicture",图片
              },
              {
                "msgKey": "realAddress",
                "msgValue": "实地认证"
+               "isgPicture",图片
              },
              {
                "msgKey": "realName",
                "msgValue": "实人"
+               "isgPicture",图片
              }
            ],
            "storeLabel": 行情官, //商家标签（,,分开）
@@ -484,13 +491,17 @@ http://localhost:8088/tradeMsgDetail
 
  ---下单
  http://localhost:8088/makeOrder(zz)
-     参数：id(供应/出售详情)，tradeType（buy购买，sell出售） tradeNum（交易数量，默认单位斤） notice（备注）
+     参数：id(供应/出售详情)，tradeType（buy购买，sell出售） tradeNum（交易数量，默认单位斤） notice（备注，不用了）
+     payMethod:支付方式（wx:微信，aLiPay:支付宝）,deposit:押金
      {
        "status": 0,
        "msg": "success",
        "success": true,
        "sourceUrl": null,
         "totalpage": 0
+        "dataWrapper": {
+            "datas"://预支付订单
+            }
      }
 
  --新闻列表
@@ -652,4 +663,62 @@ http://localhost:8081/safeCode
   "success": true,
   "sourceUrl": null,
   "totalpage": 0
+}
+--收藏
+http://localhost:8088/collectionMsg?
+    参数：id:18（商品货店铺id）,collectionType:1(1：商家 2：商品)
+    {
+      "status": 0,
+      "dataWrapper": {},
+      "msg": "",
+      "success": true,
+      "sourceUrl": null,
+      "totalpage": 0
+    }
+--获取所有有码头的城市
+http://localhost:8088/getCityDock
+{
+  "status": 0,
+   "msg": "",
+    "success": true,
+    "sourceUrl": null,
+    "totalpage": 0
+  "dataWrapper": {
+    "datas": [
+      {
+        "id": 4,
+        "name": "福建省",
+        "sorid": 0,
+        "status": "1",
+        "createtime": 1522294564000,
+        "paraenid": 0,
+        "allname": null,
+        "child": [ //省会下二级城市
+          {
+            "id": 12,
+            "name": "泉州市",
+            "sorid": 0,
+            "status": null,
+            "createtime": null,
+            "paraenid": 4,
+            "allname": null,
+            "child": [],
+            "fishDocksList": [ //码头
+              {
+                "id": 12,
+                "cityid": 12,
+                "dockname": "舟山码头",
+                "status": "1",
+                "createtime": 1525622400000,
+                "sortid": 1,
+                "citiname": "广东省"
+              }
+            ]
+          }
+        ],
+
+      }
+    ]
+  },
+
 }
