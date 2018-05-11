@@ -5,20 +5,18 @@
     "key": "cFNDd1AxdFNUeVd4WitDT3AvdUkyZz09"
 
 
-
---首页接口
+--首页接口(我要买)
 http://localhost:8081/index
 {
   "status": 0,
    "msg": "",
   "success": true,
   "sourceUrl": null,
-  "totalpage": 0
+  "totalpage": 0//总页数
   "dataWrapper": {
-	"unReadMsg": 0,//未读消息
-	  "hasSign": 2//是否已签到（0未签到，大于0已签到）
-    "tradeMsgList": [
-
+     "unReadMsg": 0,//未读消息
+     "hasSign": 2//是否已签到（0未签到，大于0已签到）
+       "tradeMsgList": [
       {
         "id": 18,
         "title": "毛蛤2.0E7斤", //标题
@@ -36,7 +34,7 @@ http://localhost:8081/index
       }
     ],
 
-    "adDatas": [
+    "adDatas": [//首页广告
       {
         "id": 11,
         "title": "Cesh", 广告标题
@@ -57,9 +55,10 @@ http://localhost:8081/index
 
 }
 
+
 --优质商家/优质商品
 http://localhost:8088/fishQuality
-参数：indexType（1：推荐渔火，2：优质商家） page（页数）
+参数：indexType（1：推荐渔货，2：优质商家） page（页数）
 { 优质商家返回，推荐渔火返回与首页返回渔货数据一样
   "status": 0,
   "msg": "",
@@ -83,6 +82,97 @@ http://localhost:8088/fishQuality
   },
 
 }
+--我要卖
+http://localhost:8081/sell
+{
+  "status": 0,
+   "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0//总页数
+  "dataWrapper": {
+     "unReadMsg": 0,//未读消息
+     "hasSign": 2//是否已签到（0未签到，大于0已签到）
+       "tradeMsgList": [
+      {
+            "id": 2150,
+            "title": "求购炸弹鱼",
+            "createTimeStr": "39分钟前",
+            "desc": "冻品 300-400",
+            "tradeNumStr": "200.0斤",
+            "unit": null
+            "storeLable":商家标签，已,,分开，存在没有情况
+          },
+    ],
+
+    "adDatas": [//首页广告
+      {
+        "id": 11,
+        "title": "Cesh", 广告标题
+        "picture": "http://ui.51bi.com/opt/siteimg/newsimg/spicture/2018/5/3eda6e2f-4b17-417b-a0be-7b4bcc5f26d8.jpg",
+        "adlink": "htttp:www.baidu.com"
+      }
+    ],
+    "cateList": [ //分类
+      {
+        "id": 11,
+        "name": "青占鱼", //分类名称
+        "picture": "http://haishangxian.cn/Uploads/Category/2016-03-14/56e66938e3297.jpg",//分类图片
+      },
+
+    ],
+
+  },
+}
+
+--供求大厅（求购大厅，供应大厅）
+http://localhost:8088/sellOrBuy(zz)
+参数：tradetype(buy我要买 sell我要卖),page(页数，默认1)
+ 选填：cateid(分类id)500,  addressid（地址id）,orderType（1：//价格从高到低，0：从低到高）默认0，
+    productname（搜索关键字），addressid（地址id）,storageid（存储方式，接口fishStorrage中获取id),
+       lowprice(最低价格)，heighprice(最高价格)，pid（商品id）unit(单位)：1斤，2吨
+{
+  "status": 0,
+  "dataWrapper": {
+    "datas": [
+      {
+        "id": 13,
+        "title": "sell状元鱼2000斤",
+        "endTime": "2018-04-21",
+        "price": "20",
+        "spcName": "一般规格",
+        "unit": null,
+        "address": "泉州市",
+        "name": null,
+        "createTime":17分钟前
+        "picture": "http://haishangxian.cn/Uploads/Category/2016-09-08/57d15f8208004.jpg"
+        "StoragePic":"http://haishangxian.cn/Uploads/Category/2016-09-08/57d15f8208004.jpg"//冰鲜图片
+        "storageName":冰鲜
+      }
+    ],
+    "totalPage": 1
+  },
+  "msg": "success",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
+
+--发布供求信息(暂不支持视频)
+   1:获取所有分类（ http://localhost:8081/allFish）
+   2：获取分类的属性（ http://localhost:8088/fishParams）
+   3：
+    3.1：发布求购，获取所有城市： http://localhost:8088/getAddress
+    3.2：发布供应：获取所有有码头的城市:http://localhost:8088/getCityDock
+   4:上传求购信息
+ http://localhost:8088/addTradeMsg
+    参数:，cityId：(城市id),prductid(商品id):506 ,specid(规格id):260 ,unit(单位id):2000,storageid(存储方式id):3
+    Price(价格):20 ,Tradenum(交易数量):2000,tradetype(交易方式)：sell：供应，buy 求购
+    userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01, minTradeNum:最小数量，service;//服务方式 1：自运，2：统一服务notepic(备注图片，多个图片已英文,,分开默认第一张是主图);
+    选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，dockId(码头id)
+    ----暂时不用 备注图片，file（文件必须未图片格式））
+
+
  --注册接口
  http://localhost:8080/regist
      请求参数：mobile(手机号码);checkcode(短信验证码);password(密码 md5加密);checkpassword(重复密码 md5加密);
@@ -306,46 +396,9 @@ http://localhost:8088/userSignList
     }
 
 
- ---添加交易信息
- http://localhost:8088/addTradeMsg
-    参数:dockName(码头名称)，cityName：码头所属城市名称,prductid(商品id):506 ,specid(规格id):260 ,unit(单位id):2000,storageid(存储方式id):3
-    Price(价格):20 ,Tradenum(交易数量):2000,Tradetype(交易方式)：sell出售，buy 购买
-    userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01, minTradeNum:最小数量，service;//服务方式 1：自运，2：统一服务notepic(备注图片，多个图片已英文,,分开默认第一张是主图);
-    选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，
-    ----暂时不用 备注图片，file（文件必须未图片格式））
 
---供求列表
-http://localhost:8088/sellOrBuy(zz)
-参数：tradetype(buy购买 sell出售),page(页数，默认1)
- 选填：cateid(分类id)500,  addressid（地址id）,orderType（1：//价格从高到低，0：从低到高）默认0，
-    productname（搜索关键字），addressid（地址id）,storageid（存储方式，接口fishStorrage中获取id),
-       lowprice(最低价格)，heighprice(最高价格)，pid（商品id）unit(单位)：1斤，2吨
-{
-  "status": 0,
-  "dataWrapper": {
-    "datas": [
-      {
-        "id": 13,
-        "title": "sell状元鱼2000斤",
-        "endTime": "2018-04-21",
-        "price": "20",
-        "spcName": "一般规格",
-        "unit": null,
-        "address": "泉州市",
-        "name": null,
-        "createTime":17分钟前
-        "picture": "http://haishangxian.cn/Uploads/Category/2016-09-08/57d15f8208004.jpg"
-        "StoragePic":"http://haishangxian.cn/Uploads/Category/2016-09-08/57d15f8208004.jpg"//冰鲜图片
-        "storageName":冰鲜
-      }
-    ],
-    "totalPage": 1
-  },
-  "msg": "success",
-  "success": true,
-  "sourceUrl": null,
-  "totalpage": 0
-}
+
+
 
  ---获取存储方式列表
  http://localhost:8088/fishStorrage
