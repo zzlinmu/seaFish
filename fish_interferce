@@ -6,7 +6,7 @@
 
 
 --首页接口(我要买)
-http://localhost:8081/index
+1：http://localhost:8081/index
 {
   "status": 0,
    "msg": "",
@@ -57,7 +57,7 @@ http://localhost:8081/index
 
 
 --优质商家/优质商品
-http://localhost:8088/fishQuality
+2：http://localhost:8088/fishQuality
 参数：indexType（1：推荐渔货，2：优质商家） page（页数）
 { 优质商家返回，推荐渔火返回与首页返回渔货数据一样
   "status": 0,
@@ -83,7 +83,7 @@ http://localhost:8088/fishQuality
 
 }
 --我要卖
-http://localhost:8081/sell
+3：http://localhost:8081/sell
 {
   "status": 0,
    "msg": "",
@@ -126,7 +126,7 @@ http://localhost:8081/sell
 }
 
 --供求大厅（求购大厅，供应大厅）
-http://localhost:8088/sellOrBuy(zz)
+4：http://localhost:8088/sellOrBuy(zz)
 参数：tradetype(buy我要买 sell我要卖),page(页数，默认1)
  选填：cateid(分类id)500,  addressid（地址id）,orderType（1：//价格从高到低，0：从低到高）默认0，
     productname（搜索关键字），addressid（地址id）,storageid（存储方式，接口fishStorrage中获取id),
@@ -158,14 +158,15 @@ http://localhost:8088/sellOrBuy(zz)
   "totalpage": 0
 }
 
---发布供求信息(暂不支持视频)
+ --发布供求信息(暂不支持视频)
+5：http://localhost:8088/addTradeMsg
    1:获取所有分类（ http://localhost:8081/allFish）
    2：获取分类的属性（ http://localhost:8088/fishParams）
    3：
     3.1：发布求购，获取所有城市： http://localhost:8088/getAddress
     3.2：发布供应：获取所有有码头的城市:http://localhost:8088/getCityDock
    4:上传求购信息
- http://localhost:8088/addTradeMsg
+
     参数:，cityId：(城市id),prductid(商品id):506 ,specid(规格id):260 ,unit(单位id):2000,storageid(存储方式id):3
     Price(价格):20 ,Tradenum(交易数量):2000,tradetype(交易方式)：sell：供应，buy 求购
     userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01, minTradeNum:最小数量，service;//服务方式 1：自运，2：统一服务notepic(备注图片，多个图片已英文,,分开默认第一张是主图);
@@ -173,13 +174,13 @@ http://localhost:8088/sellOrBuy(zz)
     ----暂时不用 备注图片，file（文件必须未图片格式））
 
 
- --注册接口
+6： --注册接口
  http://localhost:8080/regist
      请求参数：mobile(手机号码);checkcode(短信验证码);password(密码 md5加密);checkpassword(重复密码 md5加密);
      响应结果：{"status":0,"dataWrapper":{},"msg":"success","success":true,"sourceUrl":null,"totalpage":0}
 
 
- --登录接口
+7：--登录接口
  http://localhost:8080/login
      请求参数：mobile(手机号码);password(密码 md5加密);
      响应结果：
@@ -198,13 +199,13 @@ http://localhost:8088/sellOrBuy(zz)
 }
 
 
- --修改密码接口
+8：--修改密码接口
  http://localhost:8080/findPwdTwo
       请求参数：mobile(手机号码);checkcode(短信验证码);password(新密码);checkpassword(重复新密码);
     响应结果：{"status":0,"dataWrapper":{},"msg":"success","success":true,"sourceUrl":null,"totalpage":0}
 
 
---签到
+9：--签到
 http://localhost:8088/userSign
  响应结果：
     {
@@ -215,7 +216,7 @@ http://localhost:8088/userSign
     "sourceUrl":null,
     "totalpage":0
     }
---签到列表
+10：--签到列表
 http://localhost:8088/userSignList
 参数：dateStr（时间：2018-08） 不传查询当月
 {
@@ -243,7 +244,7 @@ http://localhost:8088/userSignList
   "totalpage": 0
 }
 
---获取所有分类
+11：--获取所有分类
  http://localhost:8088/fishproduct/allCate
 {
   "status": 0,
@@ -275,7 +276,7 @@ http://localhost:8088/userSignList
 
 }
 
- --根据分类获取所有海鲜产品
+ 12：--根据分类获取所有海鲜产品
  http://localhost:8088/allFish
      参数：cateId(分类id,不传获取所有分类下海鲜):
 
@@ -314,7 +315,7 @@ http://localhost:8088/userSignList
    }
 
 
- http://localhost:8088/fishParams
+ 13：http://localhost:8088/fishParams
  参数：id(海鲜产品id),
  {
   "msg": "",//失败打印msg
@@ -364,7 +365,7 @@ http://localhost:8088/userSignList
    },
 
 
- --获取地址
+14： --获取地址
  http://localhost:8088/getAddress
  {
    "msg": "",//失败打印msg
@@ -400,7 +401,7 @@ http://localhost:8088/userSignList
 
 
 
- ---获取存储方式列表
+15： ---获取存储方式列表
  http://localhost:8088/fishStorrage
 参数：unit:1(获取单位列表)
 {
@@ -466,9 +467,11 @@ http://localhost:8088/userSignList
 
 }
 
---供应/出售详情
+16：--供应/出售详情
 http://localhost:8088/tradeMsgDetail
     参数：id(供应出售信息id)
+
+    返回：供应详情
     {
       "status": 0,
       "msg": "success",
@@ -542,7 +545,47 @@ http://localhost:8088/tradeMsgDetail
 
     }
 
- ---下单
+购买详情：
+{
+  "status": 0,
+   "msg": "",
+    "success": true,
+    "sourceUrl": null,
+    "totalpage": 0
+  "dataWrapper": {
+    "datas": {
+      "storename": "http://ui.51bi.comdfasdfs",//店铺名称
+      "storePicture": null,//店铺图片
+      "productname": "炸弹鱼",//采购货品
+      "prductNumberStr": "200.0斤",//采购数量
+      "address": null,//货源地
+      "createTimeStr": "2018-05-11 13:16:32",//发布时间
+      "viewNumStr": "20次",//浏览次数
+       "storeMsg": [ //店铺信息
+              {
+                "msgKey": "buyerProduct",
+                "msgValue": "买家保证",
+                "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+              },
+              {
+                "msgKey": "realAddress",
+                "msgValue": "实地认证",
+                "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+              },
+              {
+                "msgKey": "realName",
+                "msgValue": "实人",
+                "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+              }
+            ],
+      "tradeMsgDesc": "300-400,冻品",//品质要求
+      "joinDays": "7天",//商家加入天书
+      "stroreId": null。//商家id
+    }
+  },
+
+}
+17： ---下单
  http://localhost:8088/makeOrder(zz)
      参数：id(供应/出售详情)，tradeType（buy购买，sell出售） tradeNum（交易数量，默认单位斤） notice（备注，不用了）
      payMethod:支付方式（wx:微信，aLiPay:支付宝）,deposit:押金
@@ -557,7 +600,7 @@ http://localhost:8088/tradeMsgDetail
             }
      }
 
- --新闻列表
+18： --新闻列表
 http://localhost:8081/news(zz)
     newsType（新闻分类id），选择类型才传
     page:页数
@@ -624,7 +667,7 @@ http://localhost:8081/news(zz)
   },
 
 }
- --搜索新闻
+19： --搜索新闻
 http://localhost:8081/searchNews（zz）
 page:页数，kw（搜索关键字）
 {
@@ -654,7 +697,7 @@ page:页数，kw（搜索关键字）
 
 }
 
---上传图片
+20：--上传图片
 http://localhost:8081/uploadImg
 参数：file（图片）内容，upLoadMethod(addTradeMsg)
 {
@@ -668,11 +711,11 @@ http://localhost:8081/uploadImg
   "totalpage": 0
 }
 
---天气（嵌入h5）
+21：--天气（嵌入h5）
 http://localhost:8088/map.html
 
 
---我的供求
+22：--我的供求
 http://localhost:8081/myTradeMsg
 {
   "status": 0,
@@ -703,7 +746,7 @@ http://localhost:8081/myTradeMsg
   },
 
 }
----获取搜索关键字
+23：---获取搜索关键字
 http://localhost:8081/searchKey
 参数：searchSource（供求列表：tradeKey，新闻热搜关键字，newskey）
 --获取手机验证码：
@@ -717,7 +760,7 @@ http://localhost:8081/safeCode
   "sourceUrl": null,
   "totalpage": 0
 }
---收藏
+24：--收藏
 http://localhost:8088/collectionMsg?
     参数：id:18（商品货店铺id）,collectionType:1(1：商家 2：商品)
     {
@@ -728,7 +771,7 @@ http://localhost:8088/collectionMsg?
       "sourceUrl": null,
       "totalpage": 0
     }
---获取所有有码头的城市
+25：--获取所有有码头的城市
 http://localhost:8088/getCityDock
 {
   "status": 0,
@@ -775,3 +818,37 @@ http://localhost:8088/getCityDock
   },
 
 }
+
+26:公告或者系统消息
+http://localhost:8081/listMsg?
+参数：msgType(comm:公告，sys:系统消息)
+{
+  "status": 0,
+   "msg": "",
+    "success": true,
+    "sourceUrl": null,
+    "totalpage": 1
+  "dataWrapper": {
+    "datas": [
+      {
+        "id": 1,
+        "title": "123123",//标题
+        "isRead": "0",//未读，1：已读
+        "content": "sdfdfasasdffsd",//内容
+        "createTimeStr": "2018-05-14"//时间
+      }
+    ]
+  },
+
+}
+27:消息处理
+http://localhost:8081/dealMsg
+    参数：id,消息id,status(0:删除消息，1:读取消息)
+    {
+      "status": 0,
+      "dataWrapper": {},
+      "msg": "",
+      "success": true,
+      "sourceUrl": null,
+      "totalpage": 0
+    }
