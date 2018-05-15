@@ -197,6 +197,26 @@
   "sourceUrl": null,
   "totalpage": 0
 }
+7.1- 手机验证码登入
+   获取验证码：
+   http://localhost:8080/sendRegCode
+   参数:mobile：手机号，functionName：（loginmobile）
+   登入接口：
+   http://localhost:8080/loginCode
+ 参数：mobile ：手机号，checkcode：验证码号码
+{
+  "status": 0,
+   "dataWrapper": {
+      "imSuccess": null,
+      "imToken": "",
+      "userid": 14,
+      "key": "b0F3NjN2cGpsMUN4WitDT3AvdUkyZz09"
+    },
+  "msg": "success",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
 
 
 8：--修改密码接口
@@ -845,6 +865,18 @@ http://localhost:8081/listMsg?
 http://localhost:8081/dealMsg
     参数：id,消息id,status(0:删除消息，1:读取消息)
     {
+      "status": 0,
+      "dataWrapper": {},
+      "msg": "",
+      "success": true,
+      "sourceUrl": null,
+      "totalpage": 0
+    }
+
+28:用户选择角色
+http://localhost:8081/userRoleSetting
+参数：role (1:我来找货，2：我来卖货)
+ {
       "status": 0,
       "dataWrapper": {},
       "msg": "",
