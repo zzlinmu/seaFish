@@ -609,7 +609,7 @@ http://localhost:8088/tradeMsgDetail
 17： ---下单
  http://localhost:8088/makeOrder(zz)
      参数：id(供应/出售详情)，tradeType（buy购买，sell出售） tradeNum（交易数量，默认单位斤） notice（备注，不用了）
-     payMethod:支付方式（wx:微信，aLiPay:支付宝）,deposit:押金
+     payMethod:支付方式（wxApp:微信，aLiPay:支付宝）,deposit:押金
      {
        "status": 0,
        "msg": "success",
@@ -617,8 +617,19 @@ http://localhost:8088/tradeMsgDetail
        "sourceUrl": null,
         "totalpage": 0
         "dataWrapper": {
-            "datas"://预支付订单
+            "data":12323432//预支付订单(支付宝)
+
+            "data":{//微信支付结果
+                {
+                    noncestr=mKUGL03GNRXy8hmU,//随机字符串
+                    package=Sign=WXPay,
+                    prepayid=wx2110412507237869779500ba3747830250,//预支付订单
+                    sign=6975933E28357699AF094AFC7C307693,//签名
+                    timestamp=1526870577//时间
+                  }
             }
+
+         }
      }
 
 18： --新闻列表
@@ -921,3 +932,125 @@ http://localhost:8081/userRoleSetting
       "sourceUrl": null,
       "totalpage": 0
     }
+  30：报价(一个商品只允许报价一次)
+  http://localhost:8081/quotePrice
+  参数：productId：商品id，price:价格，num：数量，addressId：地址id
+  选题： desc：描述
+{
+  "status": 0,
+  "dataWrapper": {},
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
+
+31：发起报价：
+  http://localhost:8081/quotePrice
+参数： productId：商品id  price：价格  num：数量 addressId：地址id
+ 选填    desc：描述
+      {
+           "status": 0,
+           "dataWrapper": {},
+           "msg": "",
+           "success": true,
+           "sourceUrl": null,
+           "totalpage": 0
+         }
+
+  32：收到的报价
+   http://localhost:8081/quotePriceList
+   参数：page：页数，
+   选题：productId：商品id,status:(0未读，1：已读,全部：100)
+      {
+        "status": 0,
+        "dataWrapper": {
+          "datas": [
+            {
+              "id": 58732,
+              "username": null,
+              "acid": "fish58333",
+              "createTimeStr": "2018-05-21",
+              "prodcutName": "炸弹鱼",
+              "address": null,
+              "price": "23.2元/斤",
+              "quoteAmount": "12.0斤"
+            }
+          ]
+        },
+        "msg": "",
+        "success": true,
+        "sourceUrl": null,
+        "totalpage": 1
+      }
+    33:报价详细
+ http://localhost:8081/quotePriceDetail?
+ 参数：id=58732
+    {
+      "status": 0,
+      "dataWrapper": {
+        "data": {
+          "storeLabel": null,
+          "storeMsg": [
+            {
+              "msgKey": "buyerProduct",
+              "msgValue": "买家保证",
+              "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+            },
+            {
+              "msgKey": "realAddress",
+              "msgValue": "实地认证",
+              "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+            },
+            {
+              "msgKey": "realName",
+              "msgValue": "实人",
+              "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+            }
+          ],
+          "userName": "asdf",
+          "userImg": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg",
+          "id": 58732,
+          "createTimeStr": "2018-05-21",
+          "name": "炸弹鱼",
+          "address": null,
+          "price": "23.2元/斤",
+          "quoteAmount": "12.0斤",
+          "desc": "fsadfdsf",
+          "prodcutName": "炸弹鱼",
+          "productImg": null,
+          "productPrice": "20.0元/斤",
+          "productTime": null,
+          "mobile": "12369874521",
+          "acid": "fish58333"
+        }
+      },
+      "msg": "",
+      "success": true,
+      "sourceUrl": null,
+      "totalpage": 0
+    }
+
+   34：发出的报价
+    http://localhost:8081/quotePriceList?userid=58320&key=213
+      {
+        "status": 0,
+        "dataWrapper": {
+          "datas": [
+            {
+              "id": 58732,
+              "username": null,
+              "acid": "fish58333",
+              "createTimeStr": "2018-05-21",
+              "prodcutName": "炸弹鱼",
+              "address": null,
+              "price": "23.2元/斤",
+              "quoteAmount": "12.0斤"
+            }
+          ]
+        },
+        "msg": "",
+        "success": true,
+        "sourceUrl": null,
+        "totalpage": 1
+      }
