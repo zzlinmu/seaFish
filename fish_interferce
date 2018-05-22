@@ -3,6 +3,7 @@
 
     "userid": 14,
     "key": "cFNDd1AxdFNUeVd4WitDT3AvdUkyZz09"
+    "longTime"
 
 
 --首页接口(我要买)
@@ -947,7 +948,7 @@ http://localhost:8081/userRoleSetting
 
 31：发起报价：
   http://localhost:8081/quotePrice
-参数： productId：商品id  price：价格  num：数量 addressId：地址id
+参数： tradeMsgId：交易信息id  price：价格  num：数量 addressId：地址id
  选填    desc：描述
       {
            "status": 0,
@@ -961,7 +962,7 @@ http://localhost:8081/userRoleSetting
   32：收到的报价
    http://localhost:8081/quotePriceList
    参数：page：页数，
-   选题：productId：商品id,status:(0未读，1：已读,全部：100)
+   选题：tradeMsgId：采购id,status:(0未读，1：已读,全部：100)
       {
         "status": 0,
         "dataWrapper": {
@@ -1048,6 +1049,30 @@ http://localhost:8081/userRoleSetting
               "quoteAmount": "12.0斤"
             }
           ]
+        },
+        "msg": "",
+        "success": true,
+        "sourceUrl": null,
+        "totalpage": 1
+      }
+      35:采购管理
+      http://localhost:8081/buyManage
+      参数：status（(0:下线，1：采购中，-1：被驳回)），page：页数
+      {
+        "status": 0,
+
+        "dataWrapper": {
+          "datas": [
+            {
+              "id": 2148,
+              "productName": "炸弹鱼",//商品名称
+              "viewNum": null,//商品图片
+              "quotePriceNum": null,
+              "createtimeStr": "2018-05-11 13:16:32"
+            },
+
+          ]
+          newQuotePrice:1，新报价
         },
         "msg": "",
         "success": true,
