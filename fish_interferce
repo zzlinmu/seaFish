@@ -1159,3 +1159,72 @@ http://localhost:8081/userRoleSetting
    参数 status (0:取消订单，-1：删除订单) orderType (buy:购买订单，sell：出售订单)  id 订单id
 
    4：
+
+ 36:我的设置
+ userSetting
+
+
+ 37:店铺详情
+ http://localhost:8081/user/storeDetail
+{
+  "status": 0,
+  "dataWrapper": {
+    "tradeMsgList": [ //我的供应
+      {
+        "id": 2167,
+        "title": "状元鱼200.0斤 null",
+        "endTime": "2018-06-21 00:00:00",
+        "price": "21.0元/斤",
+        "spcName": null,
+        "unit": "200.0斤",
+        "address": "福建省 泉州市",
+        "name": null,
+        "picture": null,
+        "storageName": null,
+        "storagePic": null,
+        "createTime": "23小时前",
+        "status": "审核成功",
+        "notice": null,
+        "noticePic": "http://192.168.0.131:8088/static/images111.jpg",
+        "storeMsg": [
+          {
+            "msgKey": "buyerProduct",
+            "msgValue": "买家保证",
+            "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+          },
+          {
+            "msgKey": "realAddress",
+            "msgValue": "实地认证",
+            "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+          },
+          {
+            "msgKey": "realName",
+            "msgValue": "实人",
+            "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+          }
+        ],
+        "storeName": null,
+        "minNumStr": null
+      },
+
+    ],
+    "datas": {
+      "userName": "fdsfd", //商家名称
+      "storeId": "s12",//商家id
+      "storeLael": null,//商家标签
+      "userImg": "dsffdssdf",//商家头像
+      "storeImg": null,//店铺图片已,,分开
+      "productName": "测试",//认证平类
+      "address": "上海",//认证地区
+      "fromSource": "sdf",//渠道
+      "guiGe": null,//规模
+      "hasTradeNum": "sdffd", //日供货
+      "storeMsg": null,//店铺信息
+      "storeCheckMsgList": null
+    }
+  },
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
