@@ -3,7 +3,8 @@
 
     "userid": 14,
     "key": "cFNDd1AxdFNUeVd4WitDT3AvdUkyZz09"
-    "longTime"
+    "randtime":当前时间搓+四位随机数字
+    "token":(randtime+"sea#%fish") md5加密
 
 
 --首页接口(我要买)
@@ -161,6 +162,8 @@
 
  --发布供求信息(暂不支持视频)
 5：http://localhost:8088/addTradeMsg
+    发布求购：单位：unit（jin:斤,ton：吨）
+    发布供应：单位：unit:（id）
    1:获取所有分类（ http://localhost:8081/allFish）
    2：获取分类的属性（ http://localhost:8088/fishParams）
    3：
@@ -374,7 +377,18 @@ http://localhost:8088/userSignList
          "attrunit": null
        }
      ],
-     "specUnitList": [ //单位
+      "unitList": [ 重量单位
+           {
+             "id": null,
+             "attrname": "斤",
+             "attrvale": "jin",
+             "createtime": null,
+             "status": null,
+             "attrunit": null
+           },
+
+         ],
+     "specUnitList": [ //规格单位
        {
          "id": 2000,
          "attrname": "specUnit",
@@ -1079,3 +1093,69 @@ http://localhost:8081/userRoleSetting
         "sourceUrl": null,
         "totalpage": 1
       }
+
+
+35:我的订单
+  1:购买订单
+ http://localhost:8081/order/myOrder?
+    参数：status： 订单状态 0待支付，待修改，  1：交易中  2：退款或者售后,100全部 orderType：buy
+     {
+       "status": 0,
+       "dataWrapper": {
+         "datas": [
+           {
+             "id": 2043,
+             "orderStatuscDesc": "待卖家修改",
+             "orderStatus": "0",(-1：订单取消，0：订单创建（根据checkStatus判断卖家是否确认），1：订单交易中 3：订单有效，4：订单申请退款中，5退款成功 2:订单交易成功 )
+             "productName": "状元鱼",//商品名称
+             "productPicture": "http://192.168.0.131:8088/static/images111.jpg",//商品图片
+             "priceStr": "21.0",//价格
+             "numStr": "null", //数量
+             "totalMoney": "4200.0", //总金额
+             "userName": "test", //卖家/买家 名字
+             "userId": 58320,//卖家/买家 id
+             "payStatus": "0" //支付状态（0：未支付，1：已支付）
+             "checkStatus":"0"//卖家确认状态 //0 未确认，1：已确认
+           },
+         ]
+       },
+       "msg": "",
+       "success": true,
+       "sourceUrl": null,
+       "totalpage": 1
+     }
+
+     订单状态：只有订单状态是取消才可以删除
+ 2：出售订单
+  http://localhost:8081/order/myOrder?
+     参数：status： 订单状态 0待支付，待修改，  1：交易中  2：退款或者售后,100全部 orderType：sell
+{
+       "status": 0,
+       "dataWrapper": {
+         "datas": [
+           {
+             "id": 2043,
+             "orderStatuscDesc": "待卖家修改",
+             "orderStatus": "0",(-1：订单取消，0：订单创建（根据checkStatus判断卖家是否确认，payStatus：判断卖家是否付款），1：订单交易中 3：订单有效，4：订单申请退款中，5退款成功 2:订单交易成功 )
+             "productName": "状元鱼",//商品名称
+             "productPicture": "http://192.168.0.131:8088/static/images111.jpg",//商品图片
+             "priceStr": "21.0",//价格
+             "numStr": "null", //数量
+             "totalMoney": "4200.0", //总金额
+             "userName": "test", //卖家/买家 名字
+             "userId": 58320,//卖家/买家 id
+             "payStatus": "0" //支付状态（0：未支付，1：已支付）
+             "checkStatus":"0"//卖家确认状态 //0 未确认，1：已确认
+           },
+         ]
+       },
+       "msg": "",
+       "success": true,
+       "sourceUrl": null,
+       "totalpage": 1
+     }
+   3:取消删除订单
+   http://localhost:8081/order/dealOrder
+   参数 status (0:取消订单，-1：删除订单) orderType (buy:购买订单，sell：出售订单)  id 订单id
+
+   4：
