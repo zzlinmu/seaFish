@@ -901,8 +901,8 @@ http://localhost:8081/dealMsg
     }
 
 28:用户选择角色
-http://localhost:8081/userRoleSetting
-参数：role (1:我来找货，2：我来卖货)
+http://localhost:8081/userLabel
+
 {
   "status": 0,
    "msg": "",
@@ -910,7 +910,7 @@ http://localhost:8081/userRoleSetting
     "sourceUrl": null,
     "totalpage": 0
   "dataWrapper": {
-    "labelList": [
+    "buyLabel": [ //我要买
       {
         "id": 1,
         "labelname": "好玩",
@@ -918,27 +918,23 @@ http://localhost:8081/userRoleSetting
         "labletype": "1",
         "createtime": 1526572800000
       },
-      {
-        "id": 2,
-        "labelname": "有趣",
-        "status": "1",
-        "labletype": "1",
-        "createtime": 1526572800000
-      },
-      {
-        "id": 3,
-        "labelname": "优质商家",
-        "status": "1",
-        "labletype": "1",
-        "createtime": 1526572800000
-      }
     ]
+     "sellLabel": [ //我要卖标签
+          {
+            "id": 1,
+            "labelname": "好玩",
+            "status": "1",
+            "labletype": "1",
+            "createtime": 1526572800000
+          },
+        ]
   },
 
 }
  29:用户设置标签
  http://localhost:8081/userLabelSetting
  参数：userName:用户名，userLabel:用户标签
+ 参数：role (1:我来找货，2：我来卖货)
  {
       "status": 0,
       "dataWrapper": {},
@@ -946,7 +942,8 @@ http://localhost:8081/userRoleSetting
       "success": true,
       "sourceUrl": null,
       "totalpage": 0
-    }
+  }
+
   30：报价(一个商品只允许报价一次)
   http://localhost:8081/quotePrice
   参数：productId：商品id，price:价格，num：数量，addressId：地址id
@@ -1069,7 +1066,7 @@ http://localhost:8081/userRoleSetting
         "sourceUrl": null,
         "totalpage": 1
       }
-      35:采购管理
+  35:采购管理（购买订单）
       http://localhost:8081/buyManage
       参数：status（(0:下线，1：采购中，-1：被驳回)），page：页数
       {
@@ -1096,7 +1093,7 @@ http://localhost:8081/userRoleSetting
 
 
 35:我的订单
-  1:购买订单
+  1.1:购买订单
  http://localhost:8081/order/myOrder?
     参数：status： 订单状态 0待支付，待修改，  1：交易中  2：退款或者售后,100全部 orderType：buy
      {
@@ -1126,6 +1123,9 @@ http://localhost:8081/userRoleSetting
      }
 
      订单状态：只有订单状态是取消才可以删除
+
+
+
  2：出售订单
   http://localhost:8081/order/myOrder?
      参数：status： 订单状态 0待支付，待修改，  1：交易中  2：退款或者售后,100全部 orderType：sell
@@ -1228,3 +1228,47 @@ http://localhost:8081/userRoleSetting
   "sourceUrl": null,
   "totalpage": 0
 }
+
+38:订单详情
+http://localhost:8081/order/myOrderDetail
+参数：  id 订单id
+买家订单详情
+{
+  "status": 0,
+  "dataWrapper": {
+    "datas": {
+      "id": 2043,
+      "prodcutName": null,//商品名称
+      "productPic": null,//商品图片
+      "price": "21",//价格
+      "buyNum": "200.0",//数量
+      "endMoney": "4200.0",//最终价格
+      "orderStatus": "-1",//订单状态  -1：订单取消，0：订单创建（，根据checkStatus判断 0：待修改，1：则是待付款） 1：订单交易中  2:订单交易成功
+      "checkStatus": "0",//卖家确认状态
+      "orderKey": "取消订单",//订单其他信息
+      "orderValue": "买家取消订单",//订单其他信息值
+      "orderMsgList": [],////订单追踪信息
+      "sellerName": null,//卖家姓名
+      "acid": "fish58320",//卖家imid
+      "mobile": "17521159808",//卖家手机号码
+      "payMoney": 0,//已支付金额
+      "otherPrice": null,//其他价格
+      "receiveName": null,//收货人姓名（订单状态为1 ）
+      "receiveAddress": null,//收货人地址
+      "receiveMobile": null//收货人手机号码
+    }
+  },
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
+
+
+39：删除订单/取消订单
+http://localhost:8081/order/dealOrder
+参数： status (0:取消订单，-1：删除订单)orderType (buy:购买订单，selle：出售订单) id 订单id
+
+40：修改订单
+http://localhost:8081/order/updateOrder
+    参数：订单id,otherMoney:其他金额（可以为负数）
