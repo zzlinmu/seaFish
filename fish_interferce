@@ -128,12 +128,13 @@
 }
 
 --供求大厅（求购大厅，供应大厅）
-4：http://localhost:8088/sellOrBuy(zz)
+4：http://localhost:8088/sellOrBuy
 参数：tradetype(buy我要买 sell我要卖),page(页数，默认1)
  选填：cateid(分类id)500,  addressid（地址id）,orderType（1：//价格从高到低，0：从低到高）默认0，
     productname（搜索关键字），addressid（地址id）,storageid（存储方式，接口fishStorrage中获取id),
        lowprice(最低价格)，heighprice(最高价格)，pid（商品id）unit(单位)：1斤，2吨
-{
+我要买返回：
+    {
   "status": 0,
   "dataWrapper": {
     "datas": [
@@ -159,7 +160,27 @@
   "sourceUrl": null,
   "totalpage": 0
 }
-
+我要卖返回：
+{
+  "status": 0,
+  "dataWrapper": {
+    "datas": [
+      {
+        "id": 2166,
+        "title": "求购状元鱼",
+        "createTimeStr": "4天前",
+        "desc": null,
+        "tradeNumStr": "200.0斤",
+        "unit": null,
+        "storeLable": "批发商,,黑心商"
+      },
+    ]
+  },
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 1
+}
  --发布供求信息(暂不支持视频)
 5：http://localhost:8088/addTradeMsg
     发布求购：单位：unit（jin:斤,ton：吨）
@@ -171,11 +192,13 @@
     3.2：发布供应：获取所有有码头的城市:http://localhost:8088/getCityDock
    4:上传求购信息
 
-    参数:，cityId：(城市id),prductid(商品id):506 ,specid(规格id):260 ,unit(单位id):2000,storageid(存储方式id):3
-    Price(价格):20 ,Tradenum(交易数量):2000,tradetype(交易方式)：sell：供应，buy 求购
+    发布供应参数:，cityId：(城市id),prductid(商品id):506 ,specid(规格id):260 ,unit(单位id):2000,storageid(存储方式id):3
+    Price(价格):20 ,tradenum(交易数量):2000,tradetype(交易方式)：sell：供应，buy 求购
     userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01, minTradeNum:最小数量，service;//服务方式 1：自运，2：统一服务notepic(备注图片，多个图片已英文,,分开默认第一张是主图);
     选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，dockId(码头id)
     ----暂时不用 备注图片，file（文件必须未图片格式））
+
+    发布求购参数：
 
 
 6： --注册接口
@@ -203,7 +226,7 @@
     参数：fromThree(微信：wx,qq:qq),code(第三方账户返回值)
      响应结果：
 {
-  "status": 0,
+  "status": 0,//如果status为1调到绑定手机号上
    "dataWrapper": {
        "imSuccess": "success",//im创建成功
         "setRole": "1",//进入设置角色页面（其他则不用进入）
@@ -216,6 +239,35 @@
   "sourceUrl": null,
   "totalpage": 0
 }
+7.3.1:获取手机验证码
+http://localhost:8081/sendRegCode
+参数：functionName(绑定微信：bindthreeWx，绑定qq:bindthreeQq),mobile：手机号
+{
+  "status": 0,
+  "dataWrapper": {},
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
+7.3.2:
+      第三方账户绑定账号
+       http://localhost:8080/threeBindMobile
+       参数：fromThree(微信：wx,qq:qq),code(第三方账户返回值),mobile:手机号，checkcode：短信验证
+       {
+         "status": 0,//
+          "dataWrapper": {
+              "imSuccess": "success",//im创建成功
+              "setRole": "1",//进入设置角色页面（其他则不用进入）
+              "imToken": "Ai3GZBdp4V+KnmFYlrKp5yzXaWL7gVi6fcpPekhPpoDv03QPmTz5JptcLCrQk2s0WkECn+/qOa58ElxO9dTgYZr/n0rR+kJz",
+              "userid": 58305,
+              "key": "b0F3NjN2cGpsMUNoTndGUW54Tmozdz09"
+            },
+         "msg": "success",
+         "success": true,
+         "sourceUrl": null,
+         "totalpage": 0
+       }
 
 8：--修改密码接口
  1:获取短信验证码
@@ -1272,3 +1324,5 @@ http://localhost:8081/order/dealOrder
 40：修改订单
 http://localhost:8081/order/updateOrder
     参数：订单id,otherMoney:其他金额（可以为负数）
+41:支付订单
+/order/payOrder
