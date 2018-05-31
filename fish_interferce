@@ -693,7 +693,7 @@ http://localhost:8088/tradeMsgDetail
                     prepayid=wx2110412507237869779500ba3747830250,//预支付订单
                     sign=6975933E28357699AF094AFC7C307693,//签名
                     timestamp=1526870577//时间
-                  }
+                 }
             }
 
          }
@@ -814,37 +814,54 @@ http://localhost:8081/uploadImg
 http://localhost:8088/map.html
 
 
-22：--我的供求
-http://localhost:8081/myTradeMsg
+22：--我的供应
+http://localhost:8081/user/myTradeMsg
+0：下线，1:上线，2：已交易，-1：已驳回
+参数：  status:(0：下架，1:销售中，-1：已驳回,不传:全部)，page:页数
+返回：
+  下面按钮根据 "status":状态  来判断
+       0：显示 删除，上架
+       1：显示 下架 ，修改
+       -1：被驳回：删除，修改
+       2：交易中 不能进行操作
 {
   "status": 0,
-   "msg": "success",
-    "success": true,
-    "sourceUrl": null,
-    "totalpage": 1
-    "dataWrapper": {
+  "dataWrapper": {
     "datas": [
       {
-             "id": 17,
-             "title": "sell毛蛤2.0E7斤",
-             "endTime": "2018-04-21",结束时间
-             "price": "20.0元/斤", 价格
-             "spcName": "一般规格",
-             "unit": null,
-             "address": "泉州市",
-             "name": null,
-             "picture": "http://haishangxian.cn/Uploads/Category/2016-09-08/57d15f8208004.jpg",
-             "storageName": "冻品",
-             "storagePic": null,//冰鲜图片
-             "createTime": "27分钟前",//
-             "status": "审核成功",
-             "notice": "备注",
-             "noticePic": 备注图片
-           },
-    ],
+        "id": 2171, //id
+        "name": "红头虾",//商品名称
+        "pciture": "http://192.168.0.131:8088/static/images/6efdfe30f17c4c32be4157c4f2128fbe1527665960054.jpg",//商品图片
+        "price": "255",//价格
+        "priceUnit": "元/斤", //价格单位
+        "desc": "统货 冻品 ",//描述
+        "timeStr": "4小时前",//时间
+        "status": "1"//状态（0：下架，-1：已驳回,1:上线，2：交易中）
+      },
+    ]
   },
-
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 1
 }
+22.1：下架供应/删除供应
+http://localhost:8081/user/updateMySell
+    参数：id:交易信息id,status(0:下架,1：上架,2：删除)
+    {
+      "status": 0,
+       "msg": "success",
+        "success": true,
+        "sourceUrl": null,
+        "totalpage": 1
+        "dataWrapper": {
+        "datas": [
+          { },
+        ],
+      },
+
+    }
+
 23：---获取搜索关键字
 http://localhost:8081/searchKey
 参数：searchSource（供求列表：tradeKey，新闻热搜关键字，newskey）
@@ -1048,7 +1065,7 @@ http://localhost:8081/userLabel
         "totalpage": 1
       }
     33:报价详细
- http://localhost:8081/quotePriceDetail?
+ http://localhost:8081/user/quotePriceDetail?
  参数：id=58732
     {
       "status": 0,
@@ -1096,7 +1113,7 @@ http://localhost:8081/userLabel
     }
 
    34：发出的报价
-    http://localhost:8081/quotePriceList?userid=58320&key=213
+    http://localhost:8081/user/quotePriceList?userid=58320&key=213
       {
         "status": 0,
         "dataWrapper": {
@@ -1119,11 +1136,15 @@ http://localhost:8081/userLabel
         "totalpage": 1
       }
   35:采购管理（购买订单）
-      http://localhost:8081/buyManage
+      http://localhost:8081/user/buyManage
       参数：status（(0:下线，1：采购中，-1：被驳回)），page：页数
+      返回：显示按钮：
+           0(下架)：显示删除，上架 显示查看报价
+           1（上架）：显示下架
+           -1：（被驳回）：显示删除
+           2：显示查看报价
       {
         "status": 0,
-
         "dataWrapper": {
           "datas": [
             {
@@ -1132,6 +1153,7 @@ http://localhost:8081/userLabel
               "viewNum": null,//商品图片
               "quotePriceNum": null,
               "createtimeStr": "2018-05-11 13:16:32"
+              "status":（0：下架，-1：已驳回,1:上线，2：交易中）
             },
 
           ]
@@ -1143,11 +1165,39 @@ http://localhost:8081/userLabel
         "totalpage": 1
       }
 
+35.1：修改采购 下架采购/删除采购
+http://localhost:8081/user/updateMySell
+    参数：id:交易信息id,status(0:下架,1：上架,2：删除)
+    {
+      "status": 0,
+       "msg": "success",
+        "success": true,
+        "sourceUrl": null,
+        "totalpage": 1
+        "dataWrapper": {
+        "datas": [
+          { },
+        ],
+      },
+
+    }
+
 
 35:我的订单
   1.1:购买订单
  http://localhost:8081/order/myOrder?
     参数：status： 订单状态 0待支付，待修改，  1：交易中  2：退款或者售后,100全部 orderType：buy
+        返回：
+            orderStatus（-1）：显示删除订单
+            orderStatus（0）
+                1：checkStatus（0）：显示取消订单
+                2：checkStatus（1）：显示等待付款
+            orderStatus（1）：
+                payStatus（0）：显示 支付押金
+                payStatus（1）：显示 支付尾款
+                payStatus（2）：显示 确认收货
+            orderStatus（其他）：不现实任何按钮
+
      {
        "status": 0,
        "dataWrapper": {
@@ -1163,7 +1213,7 @@ http://localhost:8081/userLabel
              "totalMoney": "4200.0", //总金额
              "userName": "test", //卖家/买家 名字
              "userId": 58320,//卖家/买家 id
-             "payStatus": "0" //支付状态（0：未支付，1：已支付）
+             "payStatus": "0" //支付状态（0：未支付，1：已支付，2:全部支付）
              "checkStatus":"0"//卖家确认状态 //0 未确认，1：已确认
            },
          ]
@@ -1181,6 +1231,13 @@ http://localhost:8081/userLabel
  2：出售订单
   http://localhost:8081/order/myOrder?
      参数：status： 订单状态 0待支付，待修改，  1：交易中  2：退款或者售后,100全部 orderType：sell
+      返回：
+                 orderStatus（-1）：显示删除订单
+                 orderStatus（0）
+                     1：checkStatus（0）：显示修改订单
+                     2：checkStatus（1）：
+                 orderStatus（1）：
+                 orderStatus（其他）：
 {
        "status": 0,
        "dataWrapper": {
@@ -1213,7 +1270,7 @@ http://localhost:8081/userLabel
    4：
 
  36:我的设置
- userSetting
+  http://localhost:8081/user/userSetting
 
 
  37:店铺详情
@@ -1325,4 +1382,44 @@ http://localhost:8081/order/dealOrder
 http://localhost:8081/order/updateOrder
     参数：订单id,otherMoney:其他金额（可以为负数）
 41:支付订单
-/order/payOrder
+http://localhost:8081/order/payOrder
+ 参数：id:订单id,支付类型  payMethod:(微信：wxApp,支付宝：aLiPay)，支付场景：payScene（支付押金：payDeposit,支付尾款：payEnd）
+    返回
+    {
+      "status": 0,//0：微信app支付，1：支付支付
+      "dataWrapper": {
+       "data":12323432//预支付订单(支付宝)
+        "data":{//微信支付结果
+                {
+                     noncestr=mKUGL03GNRXy8hmU,//随机字符串
+                     package=Sign=WXPay,
+                     prepayid=wx2110412507237869779500ba3747830250,//预支付订单
+                     sign=6975933E28357699AF094AFC7C307693,//签名
+                      timestamp=1526870577//时间
+                       partnerid:111//商户id
+
+               }
+      },
+      "msg": null,
+      "success": true,
+      "sourceUrl": null,
+      "totalpage": 0
+    }
+42：个人中心
+http://localhost:8081/userPerson
+{
+  "status": 0,
+  "dataWrapper": {
+    "datas": {
+      "userName": "孙进稳",//用户名
+      "userLabel": "undefined",//用户标签
+      "userImg": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg",//用户头像
+      "unreadBuyMsg": 1,//未读采购信息 大于0显示
+      "unredSellMsg": 0，//未读供应信息
+    }
+  },
+  "msg": null,
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
