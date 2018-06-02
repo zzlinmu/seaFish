@@ -519,7 +519,7 @@ http://localhost:8088/tradeMsgDetail
       "msg": "success",
       "success": true,
       "sourceUrl": null,
-       "totalpage": 0
+      "totalpage": 0
       "dataWrapper": {
          "likeTradeMsg": { //相关产品
            "id": 18,
@@ -550,7 +550,7 @@ http://localhost:8088/tradeMsgDetail
            "address": "广东省舟山码头",
            "name": "毛蛤",
            "notice": null, //商品备注
-           "noticePic": null,//商品详情
+           "noticePic": null,//商品详情,图片已,,分开
            "minNumStr":最小数量
            createTime:发布时间
          },
@@ -1361,12 +1361,19 @@ http://localhost:8081/order/myOrderDetail
       "checkStatus": "0",//卖家确认状态
       "orderKey": "取消订单",//订单其他信息
       "orderValue": "买家取消订单",//订单其他信息值
-      "orderMsgList": [],////订单追踪信息
+       "orderMsgList": [
+              "买家已支付订单押金:2018-06-01 15:02:16"
+            ],,////订单追踪信息
       "sellerName": null,//卖家姓名
       "acid": "fish58320",//卖家imid
       "mobile": "17521159808",//卖家手机号码
       "payMoney": 0,//已支付金额
-      "otherPrice": null,//其他价格
+      "otherPrice": [  ////其他价格
+              {
+                "msgText": "优惠金额",
+                "msgValue": "190.0"
+              }
+            ],
       "receiveName": null,//收货人姓名（订单状态为1 ）
       "receiveAddress": null,//收货人地址
       "receiveMobile": null//收货人手机号码
@@ -1411,6 +1418,7 @@ http://localhost:8081/order/myOrderDetail
 
  37:店铺详情
  http://localhost:8081/user/storeDetail
+ id:店铺id
 {
   "status": 0,
   "dataWrapper": {
