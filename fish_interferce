@@ -1454,7 +1454,7 @@ http://localhost:8081/order/myOrderDetail
             "misgPicture": "http://192.168.0.131:8088/image/buyporduct.png"
           }
         ],
-        "storeCheckMsgList": [ //商家认证信息
+        "storeCheckMsgList": [ //商家认证信息 用户名前面
           {
             "name": "认证商家",
             "checkPicture": "http://r21039d141.iok.la:28378/image/buyporduct.png"
