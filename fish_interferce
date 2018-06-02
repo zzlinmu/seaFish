@@ -881,7 +881,9 @@ http://localhost:8081/dealMsg
 2.2- 手机验证码登入
    2.2.1:获取验证码：
         http://localhost:8080/sendRegCode
-        参数:mobile：手机号，functionName：（loginmobile）
+        参数:
+
+        ：手机号，functionName：（loginmobile）
    2.2.2:登入接口：
      http://localhost:8080/loginCode
      参数：mobile ：手机号，checkcode：验证码号码
@@ -1420,66 +1422,58 @@ http://localhost:8081/order/myOrderDetail
  http://localhost:8081/user/storeDetail
  id:店铺id
 {
-  "status": 0,
-  "dataWrapper": {
-    "tradeMsgList": [ //我的供应
-      {
-        "id": 2167,
-        "title": "状元鱼200.0斤 null",
-        "endTime": "2018-06-21 00:00:00",
-        "price": "21.0元/斤",
-        "spcName": null,
-        "unit": "200.0斤",
-        "address": "福建省 泉州市",
-        "name": null,
-        "picture": null,
-        "storageName": null,
-        "storagePic": null,
-        "createTime": "23小时前",
-        "status": "审核成功",
-        "notice": null,
-        "noticePic": "http://192.168.0.131:8088/static/images111.jpg",
-        "storeMsg": [
+   "status": 0,
+    "dataWrapper": {
+      "tradeMsgList": [],
+      "datas": {
+        "userName": "dfasdfs",// 店铺名称
+        "storeId": "58320",//店铺id
+        "storeLael": null,//店铺标签
+        "userImg": "http://g-search1.alicdn.com/img/bao/uploaded/i4/i2/1068733253/TB19VRoXIj_B1NjSZFHXXaDWpXa_!!0-item_pic.jpg", //用户头像
+        "storeImg": "http://img11.360buyimg.com/n7/jfs/t16648/195/2329685407/445762/f7b37676/5af148e8N238d1d38.jpg",//店铺图像 已,,分开
+        "productName": null, //认证品类
+        "address": "上海", //认证地区
+        "fromSource": "--", //供货渠道
+        "guiGe": null,//规模
+        "checkRole":代办 //认证身份
+        "hasTradeNum": "200", //日供货量
+        "storeMsg": [//店铺信息
           {
             "msgKey": "buyerProduct",
             "msgValue": "买家保证",
-            "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+            "misgPicture": "http://192.168.0.131:8088/image/a3.png"
           },
           {
             "msgKey": "realAddress",
             "msgValue": "实地认证",
-            "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+            "misgPicture": "http://192.168.0.131:8088/image/a2.png"
           },
           {
             "msgKey": "realName",
             "msgValue": "实人",
-            "misgPicture": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg,,https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg"
+            "misgPicture": "http://192.168.0.131:8088/image/buyporduct.png"
           }
         ],
-        "storeName": null,
-        "minNumStr": null
-      },
-
-    ],
-    "datas": {
-      "userName": "fdsfd", //商家名称
-      "storeId": "s12",//商家id
-      "storeLael": null,//商家标签
-      "userImg": "dsffdssdf",//商家头像
-      "storeImg": null,//店铺图片已,,分开
-      "productName": "测试",//认证平类
-      "address": "上海",//认证地区
-      "fromSource": "sdf",//渠道
-      "guiGe": null,//规模
-      "hasTradeNum": "sdffd", //日供货
-      "storeMsg": null,//店铺信息
-      "storeCheckMsgList": null
-    }
-  },
-  "msg": "",
-  "success": true,
-  "sourceUrl": null,
-  "totalpage": 0
+        "storeCheckMsgList": [ //商家认证信息
+          {
+            "name": "认证商家",
+            "checkPicture": "http://r21039d141.iok.la:28378/image/buyporduct.png"
+          },
+          {
+            "name": "种植基地",
+            "checkPicture": "http://r21039d141.iok.la:28378/image/a2.png"
+          },
+          {
+            "name": "产平招聘",
+            "checkPicture": "http://r21039d141.iok.la:28378/image/a3.png"
+          }
+        ]
+      }
+    },
+    "msg": "",
+    "success": true,
+    "sourceUrl": null,
+    "totalpage": 0
 }
 
 
