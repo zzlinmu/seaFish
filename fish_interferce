@@ -197,6 +197,7 @@
     userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01, minTradeNum:最小数量，service;//服务方式 1：自运，2：统一服务notepic(备注图片，多个图片已英文,,分开默认第一张是主图);
     选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，dockId(码头id)
     ----暂时不用 备注图片，file（文件必须未图片格式））
+    发布求购参数：tradetype：buy,cityId：(城市id，已,分开,最多三个),prductid(商品id):506 ,specid(规格id):260 ,unit(jin和供应不一样)，storageid，Tradenum(交易数量)
 
     发布求购参数：
 
@@ -542,7 +543,7 @@ http://localhost:8088/tradeMsgDetail
          },
          "datas": { //商品详细信息
            "id": 18,
-           "title": "sell毛蛤20000000斤",
+           "title": "sell毛蛤20000000斤", //供应标题
            "endTime": "2018-04-21", //结束时间
            "price": 20, //价格
            "spcName": "一般规格",
@@ -1484,4 +1485,24 @@ Content-Type application/json
 out_trade_no=订单号  trade_no=支付宝订单流水号  receipt_amount=实际收款金额 app_id=2018050202618614  total_amount=订单金额  gmt_payment=2018-06-01 14:14:12  trade_status=TRADE_SUCCESS
 
 
-
+---------------------------聊天----------------------------------
+1：搜索好友
+http://localhost:8081/im/searchFriend
+参数：mobile:手机号
+{
+  "status": 0,
+  "dataWrapper": {
+    "datas": [
+      {
+        "acid": "fish58319", //im聊天id
+        "userName": "hinata", //用户名
+        "headImg": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg",//用户头像
+        "isFrend": "0"//0 不是好友，1：好友
+      }
+    ]
+  },
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
