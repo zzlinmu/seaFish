@@ -630,8 +630,31 @@ http://localhost:8088/tradeMsgDetail
 }
 17：
 --下单初始化
-参数：id，tradeType（buy购买，sell出售） tradeNum（交易数量）
+
 http://localhost:8088/order/makeOrderInit
+参数：id，tradeType（buy购买，sell出售） tradeNum（交易数量）
+
+返回：
+{
+  "status": 0,
+  "dataWrapper": {
+    "datas": {
+      "deposit": "10000",//押金
+      "tradeNum": "51.0",//交易数量
+      "price": "360.0",//价格
+      "priceUnit": "元/斤",//价格单位
+      "totalMoney": "18360",//总金额
+      "addressType": "0",//地址类型
+      "addressName": null,//详细地址
+      "mobile": null,//收货手机号
+      "addressUser": null//收货人
+    }
+  },
+  "msg": null,
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
 
 ---下单
  http://localhost:8088/order/makeOrder
@@ -1484,7 +1507,7 @@ http://localhost:8081/order/myOrderDetail
 
 -----------------------地址管理----------------------------------
 1：用户地址列表
-http://localhost:8081/userAddress
+http://localhost:8081/user/userAddress
 {
   "status": 0,
   "dataWrapper": {
@@ -1504,7 +1527,7 @@ http://localhost:8081/userAddress
   "totalpage": 0
 }
 2：新增/修改/设置默认地址
-http://localhost:8081/addUserAddress
+http://localhost:8081/user/addUserAddress
  参数： cityName;//城市areaName;//地区 detailName;//详细地址 isDefault;//1是默认，userName：收货人姓名，userMobile：收货人手机号
  选填：province;//省
 
