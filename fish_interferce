@@ -36,14 +36,16 @@
       }
     ],
 
-    "adDatas": [//首页广告
-      {
-        "id": 11,
-        "title": "Cesh", 广告标题
-        "picture": "http://ui.51bi.com/opt/siteimg/newsimg/spicture/2018/5/3eda6e2f-4b17-417b-a0be-7b4bcc5f26d8.jpg",
-        "adlink": "http:www.baidu.com"
-      }
-    ],
+    "adDatas": [
+          {
+            "id": 1,
+            "title": null,
+            "picture": "opt/siteimg/newsimg/xts/img/2018/06/ec07c380-48c2-49fb-97bc-625702dbb709.jpg",
+            "adlink": "http://www.51bi.com",
+            "adGoType": "1", // 1 跳转到供应详情，2：跳转到出售详情，3：跳h5链接
+            "tradeMsgId": "2221" //详情id
+          },
+        ],
     "cateList": [ //分类
       {
         "id": 11,
@@ -197,9 +199,100 @@
     userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01, minTradeNum:最小数量，service;//服务方式 1：自运，2：统一服务notepic(备注图片，多个图片已英文,,分开默认第一张是主图);
     选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，dockId(码头id)
     ----暂时不用 备注图片，file（文件必须未图片格式））
+    发布求购参数：tradetype：buy,cityId：(城市id，已,分开,最多三个),prductid(商品id):506 ,specid(规格id):260 ,unit(jin和供应不一样)，storageid，Tradenum(交易数量)
 
-    发布求购参数：
+    5 ：修改供应
+         5.1：修改供应初始化
+         http://localhost:8088/updateTradeMsgInit
+         {
+           "status": 0,
+           "dataWrapper": {
+             "datas": {
+               "id": 2203, //供应详情id
+               "tradenum": "10000", //交易数量
+               "minTradenum": "50.0", //最小交易量
+               "boxNum": null, //每箱数量
+               "productName": "红头虾", //商品名称
+               "cityName": "浙江省杭州市", //城市名称
+               "dockName": "象山三冷码头", //码头名称
+               "sellTime": "2018-10-01 00:00:00", //供应时间
+               "serviceMethod": "1", //服务方式
+               "price": "360", //价格
+               "productSpec": "一般规格 冻品"
+             },
+             "specNameList": [ //规格
+                        {
+                          "id": 41,
+                          "attrname": "specName",
+                          "attrvale": "一般规格",
+                          "attrunit": null,
+                          "status": "1"
+                        },
+                        {
+                          "id": 89,
+                          "attrname": "specName",
+                          "attrvale": "统货",
+                          "attrunit": null,
+                          "status": "0"
+                        }
+                      ],
+             "mainTypeList": [ //类型
+               {
+                 "id": 0,
+                 "attrname": "storageName",
+                 "attrvale": "冰鲜",
+                 "attrunit": null,
+                 "status": "0"
+               },
+               {
+                 "id": 1,
+                 "attrname": "storageName",
+                 "attrvale": "冻品",
+                 "attrunit": null,
+                 "status": "1"
+               }
+             ],
+             "unitList": [ //单位
+               {
+                 "id": null,
+                 "attrname": "斤",
+                 "attrvale": "jin",
+                 "attrunit": null,
+                 "status": null
+               },
+               {
+                 "id": null,
+                 "attrname": "吨",
+                 "attrvale": "ton",
+                 "attrunit": null,
+                 "status": null
+               }
+             ],
+             "specUnitList": [  //价格单位
+               {
+                 "id": 2000,
+                 "attrname": "specUnit",
+                 "attrvale": "元/箱",
+                 "attrunit": "box",
+                 "status": "0"
+               },
 
+             ]
+           },
+           "msg": "",
+           "success": true,
+           "sourceUrl": null,
+           "totalpage": 0
+         }
+        5.2:修改供应
+         http://localhost:8088/updateTradeMsg
+          修改供应参数:，
+             Price(价格):20 ,tradenum(交易数量):2000,tradetype(交易方式)：sell：供应，buy 求购
+             userid（用户id)12 endTimeStr(结束时间)：2018-04-21 03:01:01, minTradeNum:最小数量，
+               notepic(备注图片，多个图片已英文,,分开默认第一张是主图，url编码下);
+            选填参数：quantityconver（例如，一顿多少箱/一箱多少斤 1:1000），notetext(备注信息)，
+                dockId(码头id) cityId：(城市id),prductid(商品id):506 ,specid(规格id):260 ,
+                unit(单位id):2000,storageid(存储方式id):3，service;//服务方式 1：自运，2：统一服务
 
 
 
@@ -644,7 +737,7 @@ http://localhost:8088/order/makeOrderInit
       "price": "360.0",//价格
       "priceUnit": "元/斤",//价格单位
       "totalMoney": "18360",//总金额
-      "addressType": "0",//地址类型
+      "addressType": "0",//地址类型(0:不可以选地址，1：有地址，2：显示添加地址)
       "addressName": null,//详细地址
       "mobile": null,//收货手机号
       "addressUser": null//收货人
@@ -988,11 +1081,13 @@ http://localhost:8081/userPerson
   "dataWrapper": {
     "datas": {
       "userName": "孙进稳",//用户名
-      "userLabel": "undefined",//用户标签
+      "userLabel": "undefined",//用户标签已,,分开
       "userImg": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg",//用户头像
-      "unreadBuyMsg": 1,//未读采购信息 大于0显示
-      "unredSellMsg": 0，//未读供应信息
+      "unreadBuyMsg": 1,//未读购买订单 大于0显示
+      "unredSellMsg": 0，//未读供应订单
+      "unreadBuyMsg": 1,//未读发布采购 大于0显示
       "mobile":手机号
+      "unreadMsg":"1",未读消息
     }
   },
   "msg": null,
@@ -1054,6 +1149,7 @@ http://localhost:8081/userPerson
   "sourceUrl": null,
   "totalpage": 1
 }
+
 2：下架供应/删除供应
     http://localhost:8081/user/updateMySell
     参数：id:交易信息id,status(0:下架,1：上架,2：删除)
@@ -1517,7 +1613,8 @@ http://localhost:8081/user/userAddress
         "addressUserName": "阿斯顿发大水",
         "mobile": "12312214412",
         "isDefault": "1",
-        "addressName": "null上海浦东新区张江高科"
+        "addressName": "上海浦东新区张江高科"
+        "detailAddress":地址详情
       }
     ]
   },
@@ -1526,10 +1623,15 @@ http://localhost:8081/user/userAddress
   "sourceUrl": null,
   "totalpage": 0
 }
-2：新增/修改/设置默认地址
+2：新增/修改/
 http://localhost:8081/user/addUserAddress
- 参数： cityName;//城市areaName;//地区 detailName;//详细地址 isDefault;//1是默认，userName：收货人姓名，userMobile：收货人手机号
- 选填：province;//省
+ 新增:cityName;//城市areaName;//地区 detailName;//详细地址 isDefault;//1是默认，userName：收货人姓名，userMobile：收货人手机号
+  选填：province;//省
+ 修改参数：id:地址id cityName;//城市areaName;//地区 detailName;//详细地址 isDefault;//1是默认，userName：收货人姓名，userMobile：收货人手机号
+     选填：province;//省
+ 设置默认地址参数： id 地址id,isDefault;//1是默认 0不默认
+ 删除地址参数： id 地址id,isDelete;//1是删除
+
 
 {
   "status": 0,
@@ -1542,11 +1644,30 @@ http://localhost:8081/user/addUserAddress
 
 
 
-
 ----支付宝回掉等待测试：
 http://localhost:8081/notify/aliPay
 Content-Type application/json
 out_trade_no=订单号  trade_no=支付宝订单流水号  receipt_amount=实际收款金额 app_id=2018050202618614  total_amount=订单金额  gmt_payment=2018-06-01 14:14:12  trade_status=TRADE_SUCCESS
 
 
-
+---------------------------聊天----------------------------------
+1：搜索好友
+http://localhost:8081/im/searchFriend
+参数：mobile:手机号
+{
+  "status": 0,
+  "dataWrapper": {
+    "datas": [
+      {
+        "acid": "fish58319", //im聊天id
+        "userName": "hinata", //用户名
+        "headImg": "https://pic4.zhimg.com/v2-b939cc4ac827abadedd9e4391418ae6c_xs.jpg",//用户头像
+        "isFrend": "0"//0 不是好友，1：好友
+      }
+    ]
+  },
+  "msg": "",
+  "success": true,
+  "sourceUrl": null,
+  "totalpage": 0
+}
